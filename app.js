@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const tasks = require("./routes/tasks");
+const connectDb = require("./db/connect");
+require("dotenv").config();
 
 // middleware
 
@@ -13,6 +15,15 @@ app.get("/hello", (req, res) => {
 
 const port = 3000;
 
-app.listen(port, () => {
-  console.log(`app is listning on port ${port}...`);
-});
+const start = async () => {
+  try {
+    await connectDb(process.env.MONGO_URI);
+    app.listen(port, () => {
+      console.log(`app is listning on port ${port}...`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
