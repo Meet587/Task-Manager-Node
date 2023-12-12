@@ -9,11 +9,11 @@ require("dotenv").config();
 app.use(express.json());
 
 app.use("/api/v1/tasks", tasks);
-app.get("/hello", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).send("Hello World");
 });
 
-const port = 3000;
+const port = 5000;
 
 const start = async () => {
   try {
