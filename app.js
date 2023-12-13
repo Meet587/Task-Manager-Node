@@ -5,13 +5,10 @@ const connectDb = require("./db/connect");
 require("dotenv").config();
 
 // middleware
-
+app.use(express.static("./public"));
 app.use(express.json());
 
 app.use("/api/v1/tasks", tasks);
-app.get("/", (req, res) => {
-  res.status(200).send("Hello World");
-});
 
 const port = 5000;
 
